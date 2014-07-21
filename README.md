@@ -30,10 +30,10 @@ Default: `"app.manifest"`
 Set name of the Cache Manifest file.
 
 #### options.cache
-Type: `String`  
+Type: `Array`  
 Default: `undefined`  
 
-Adds manually a string to the **CACHE** section. Needed when you have cache buster for example.
+Adds manually a string to the **CACHE** section. Specify an array of strings.
 
 #### options.exclude
 Type: `String` `Array`  

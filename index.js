@@ -35,14 +35,18 @@ function manifest(options) {
   }
 
   function writeToManifest(file) {
+    if (options.replace){
+      file.path=file.path.replace(options.replace,'');
+    }
     if (file.isNull())   return;
     if (file.isStream()) return this.emit('error', new gutil.PluginError('gulp-manifest',  'Streaming not supported'));
 
     if (exclude.indexOf(file.relative) >= 0) {
       return;
     }
+    var fileName=options.path ? file.path : file.relative;
 
-    contents.push(encodeURI(slash(file.relative)));
+    contents.push(encodeURI(slash(fileName)));
 
     if (options.hash) {
       hasher.update(file.contents, 'binary');

@@ -5,6 +5,8 @@ Big thanks to [Gunther Brunner](https://github.com/gunta/) for writing the [grun
 
 Visit the [HTML 5 Guide to AppCache](http://www.html5rocks.com/en/tutorials/appcache/beginner/) for more information on Cache Manifest files.
 
+Minor change by [M1ke](http://twitter.com/m1ke) to add absolute path options.
+
 ## Usage
 
 First, install `gulp-manifest` as a dev dependency
@@ -83,13 +85,15 @@ This will ensure that application cache invalidates whenever actual file content
 
 
     gulp.task('manifest', function(){
-      gulp.src(['build/*'])
+      gulp.src(['css/*' , 'js/*', 'some_files/*'])
         .pipe(manifest({
           hash: true,
           preferOnline: true,
           network: ['http://*', 'https://*', '*'],
           filename: 'app.manifest',
-          exclude: 'app.manifest'
+          exclude: 'app.manifest',
+          path: true,
+          replace: __dirname+'/'
          }))
         .pipe(gulp.dest('build'));
     });
